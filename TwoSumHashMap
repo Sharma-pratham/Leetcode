@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+
+        unordered_map<int,int> umap;// empty initialisation
+
+        for(int i=0;i<nums.size();i++){
+            int temp = nums[i];//store current array value in a temp var
+            if(umap.find(target-temp)!=umap.end()){//try to find the difference that is required to make the target sum in the hashmap
+                return {i,umap[target-temp]} // if you find it return the index of the current array position and the balance value
+            }
+            umap[temp]=i;//if we do not find the value then we insert the current value in the hash map.
+        }
+        
+        return {}
+    }
+};
+
+//DRY RUN
+//target =9 nums = [2,7,11,9]
+// itr i=0
+//  temp = 2 if statement false becuase empty hasmap insert value in the haah map
+// umap = [2:0]
+// itr i=1
+//  temp = 7 if statement finds the balance 2 in umap returns the pair,
+// This algorithm works because they asked the return value to be in any order.
+// if this is not the case we will have to insert the values in the hashmap first and then iterate through the same loop without the statement outside if
